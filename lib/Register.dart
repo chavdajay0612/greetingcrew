@@ -307,6 +307,9 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                           if (value == null || value.isEmpty) {
                             return 'Phone number is required';
                           }
+                          if (value != 10){
+                            return 'Enter Valid mobile number';
+                          }
                           return null;
                         },
                       ),
