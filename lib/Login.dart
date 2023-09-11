@@ -183,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 30,),
                 MaterialButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                       String email = _emailController.text;
                       String password = _passwordController.text;
