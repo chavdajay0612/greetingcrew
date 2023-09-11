@@ -191,6 +191,7 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                       ),
                       const SizedBox(height: 20,),
                       TextFormField(
+                        maxLength: 6,
                         cursorColor: Colors.black,
                         controller: passwordController,
                         obscureText: _isSecurePassword,
@@ -232,6 +233,7 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                       ),
                       const SizedBox(height: 15,),
                       TextFormField(
+                        maxLength: 6,
                         cursorColor: Colors.black,
                         controller: confirmPasswordController,
                         obscureText: _isSecurePassword1,
