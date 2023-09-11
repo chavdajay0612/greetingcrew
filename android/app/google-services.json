@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "573836069337",
+    "project_id": "greetingcrew-66bbc",
+    "storage_bucket": "greetingcrew-66bbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573836069337:android:f1cede3950a312828371c8",
+        "android_client_info": {
+          "package_name": "com.example.greetingcrew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573836069337-28k517i5eqvgaagks0r5tv1q6t0hk2pd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpc6JxLSczlY0QGqcvX0WhWdOX4vC7BGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573836069337-28k517i5eqvgaagks0r5tv1q6t0hk2pd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
