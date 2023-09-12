@@ -29,18 +29,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> getContactPermission() async {
     if (await Permission.contacts.isGranted) {
       fetchContacts();
-      // Fluttertoast.showToast(msg: 'test1');
+      Fluttertoast.showToast(msg: 'test1');
     } else {
       await Permission.contacts.request();
     }
   }
 
   Future<void> fetchContacts() async {
-    // Fluttertoast.showToast(msg: 'test2');
+    Fluttertoast.showToast(msg: 'test2');
     contacts = await ContactsService.getContacts();
 
 
-    // Fluttertoast.showToast(msg: 'test3');
+    Fluttertoast.showToast(msg: 'test3');
 
     if (mounted) {
       setState(() {
