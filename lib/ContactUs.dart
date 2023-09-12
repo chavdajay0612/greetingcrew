@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'main.dart';
 
-void main() {
-  runApp(ContactUsApp());
-}
 void launchUrl2() async{
   var url = 'https://www.facebook.com/';
   if (await canLaunch(url)) {

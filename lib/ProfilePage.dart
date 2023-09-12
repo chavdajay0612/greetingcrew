@@ -2,12 +2,12 @@ import 'dart:io'; // Import the 'dart:io' library for File operations
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart'; // Import the image_picker package
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Login.dart';
 import 'Support.dart';
 import 'TermsAndServices.dart';
-void main() {
-  runApp(ProfileApp());
-}
+import 'main.dart';
+
 
 class ProfileApp extends StatelessWidget {
   @override
@@ -241,8 +241,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 "Logout",
                 style: TextStyle(fontSize: 25,color: Colors.black),
               ),
-              onPressed: ()  {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+
+              onPressed: ()  async{
+                var sharedpref=await SharedPreferences.getInstance();
+                sharedpref.setBool(WelcomePage.KEYLOGIN, false);
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
               },
             )
           ],
