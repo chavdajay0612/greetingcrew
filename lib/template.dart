@@ -37,7 +37,7 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
     final storageRef = storage.ref();
     String? userId = FirebaseAuth.instance.currentUser?.uid;
     print("userid ==>>$userId");
-    final DatabaseReference userRef = FirebaseDatabase.instance.reference().child('users').child(userId!); // Replace 'user_id' with the actual user's UID
+    final DatabaseReference userRef = FirebaseDatabase.instance.reference().child('files').child(userId!); // Replace 'user_id' with the actual user's UID
 
     for (var i = 0; i < selectedFiles.length; i++) {
       final file = selectedFiles[i];
@@ -81,11 +81,7 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
-          },
-        ),
+
         backgroundColor: Colors.black,
         title: const Text('Template'),
 

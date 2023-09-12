@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:greetingcrew/ContactUs.dart';
 import 'package:greetingcrew/ProfilePage.dart';
+import 'package:greetingcrew/SendNow.dart';
 import 'package:greetingcrew/dtschedule.dart';
 import 'package:greetingcrew/template.dart';
 import 'Data.dart';
 
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return  MyHomePage();
-  }
-}
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({ Key? key }) : super(key: key);
@@ -76,7 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           InkWell(
             onTap: (){
-              //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>SendNOW()));
+              // send now
             },
             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black,),
               child: Column(

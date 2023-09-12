@@ -55,10 +55,12 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
       var sharedpref=await SharedPreferences.getInstance();
       sharedpref.setBool(WelcomePage.KEYLOGIN, true);
 
+      sharedpref.setString('userId', '${userCredential.user?.uid}');
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MyApp(),
+          builder: (context) => MyHomePage(),
         ),
       );
 
@@ -280,6 +282,7 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                       TextFormField(
                         cursorColor: Colors.black,
                         controller: phoneController,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(0.0),
                           labelText: 'Phone Number',
@@ -288,6 +291,7 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                             color: Colors.grey,
                             fontSize: 14.0,
                           ),
+
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -310,7 +314,7 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                           if (value == null || value.isEmpty) {
                             return 'Phone number is required';
                           }
-                          if (value != 10){
+                          if (value.length != 10){
                             return 'Enter Valid mobile number';
                           }
                           return null;
