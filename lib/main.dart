@@ -85,7 +85,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
             width: double.infinity,
             height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
             child: Column(
               // even space distribution
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,7 +93,7 @@ class _WelcomePageState extends State<WelcomePage> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Text(
+                    const Text(
                       "Welcome",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
 
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text("BackSlash Flutter provides extraordinary flutter tutorials. Do Subscribe! ",
@@ -116,7 +116,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height / 15,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("assets/logo-png.png")
 
@@ -125,7 +125,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height / 3,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("assets/w.png")
 
@@ -140,17 +140,17 @@ class _WelcomePageState extends State<WelcomePage> {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
 
                       },
                       // defining the shape
                       shape: RoundedRectangleBorder(
-                          side: BorderSide(
+                          side: const BorderSide(
                               color: Colors.black
                           ),
                           borderRadius: BorderRadius.circular(50)
                       ),
-                      child: Text(
+                      child: const Text(
                         "Login",
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
@@ -159,19 +159,19 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                     ),
                     // creating the signup button
-                    SizedBox(height:20),
+                    const SizedBox(height:20),
                     MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterWithPhoneNumber()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterWithPhoneNumber()));
 
                       },
                       color: Colors.black,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)
                       ),
-                      child: Text(
+                      child: const Text(
                         "Register",
                         style: TextStyle(
                             color: Colors.white,

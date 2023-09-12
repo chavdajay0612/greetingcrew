@@ -59,7 +59,7 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
     );
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => dtschedule()),
+      MaterialPageRoute(builder: (context) => dtschedule(PhoneNumber: '',)),
     );
   }
 
