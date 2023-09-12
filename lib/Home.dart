@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greetingcrew/ContactUs.dart';
 import 'package:greetingcrew/ProfilePage.dart';
+import 'package:greetingcrew/SendNow.dart';
 import 'package:greetingcrew/dtschedule.dart';
 import 'package:greetingcrew/template.dart';
 import 'Data.dart';
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           InkWell(
             onTap: (){
-              //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>SendNOW()));
             },
             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black,),
               child: Column(
