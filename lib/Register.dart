@@ -3,14 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Home.dart';
 import 'Login.dart';
+import 'main.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    home: RegisterWithPhoneNumber(),
-  ));
-}
+
 
 class RegisterWithPhoneNumber extends StatefulWidget {
   const RegisterWithPhoneNumber({Key? key}) : super(key: key);
@@ -52,7 +50,12 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
         'Phone': phoneController.text,
       });
 
-      Navigator.push(
+
+
+      var sharedpref=await SharedPreferences.getInstance();
+      sharedpref.setBool(WelcomePage.KEYLOGIN, true);
+
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => MyApp(),

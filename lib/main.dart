@@ -1,6 +1,10 @@
+import 'dart:async';
 import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'Home.dart';
 import 'login.dart';
 import 'Register.dart';
 
@@ -9,12 +13,66 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: WelcomePage(),
+    home: WHERETOGOCLASS(),
   ));
 }
 
-class WelcomePage extends StatelessWidget {
+class WHERETOGOCLASS extends StatefulWidget {
+  const WHERETOGOCLASS({super.key});
+
   @override
+  State<WHERETOGOCLASS> createState() => _WHERETOGOCLASSState();
+}
+
+class _WHERETOGOCLASSState extends State<WHERETOGOCLASS> {
+
+  void initState(){
+    super.initState();
+    whereToGo();
+  }
+
+  Future<void> whereToGo() async{
+    var sharedpref= await SharedPreferences.getInstance();
+
+    var isloggedin = sharedpref.getBool(WelcomePage.KEYLOGIN);
+
+    if (isloggedin!=null){
+      if(isloggedin){
+        // Fluttertoast.showToast(msg: 'hello is logged');
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => MyHomePage(),));
+      }else{
+
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => WelcomePage(),));
+      }
+    }else{
+      // Fluttertoast.showToast(msg: 'hello null ecxcp');
+
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => WelcomePage(),));
+    }
+
+
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+
+
+class WelcomePage extends StatefulWidget {
+  static const String KEYLOGIN = "Login";
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,

@@ -7,9 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:greetingcrew/Home.dart';
 import 'package:greetingcrew/dtschedule.dart';
 
-void main() {
-  runApp(const template());
-}
+
 
 // ignore: camel_case_types
 class template extends StatelessWidget {
@@ -17,13 +15,7 @@ class template extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Template',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const FileUploadScreen(),
-    );
+    return  const FileUploadScreen();
   }
 }
 

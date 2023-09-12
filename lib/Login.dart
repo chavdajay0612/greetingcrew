@@ -3,17 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greetingcrew/Home.dart';
+import 'package:greetingcrew/main.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Register.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MaterialApp(
-    home: LoginPage(),
-  ));
-}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -46,7 +40,12 @@ class _LoginPageState extends State<LoginPage> {
       );
       // Successful login
       print('User logged in: ${userCredential.user?.uid}');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+
+
+      var sharedpref=await SharedPreferences.getInstance();
+      sharedpref.setBool(WelcomePage.KEYLOGIN, true);
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyApp()));
       // Navigate to another page here
     } catch (e) {
       // Handle login error
@@ -184,6 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 30,),
                 MaterialButton(
                   onPressed: () async {
+
                     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                       String email = _emailController.text;
                       String password = _passwordController.text;
@@ -194,6 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                           gravity: ToastGravity.BOTTOM,
                           toastLength: Toast.LENGTH_LONG);
                     }
+
                   },
                   height: 45,
                   color: Colors.black,
@@ -201,9 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                  child: const Text("Login", style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 ),
                 const SizedBox(height: 30,),

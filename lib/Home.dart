@@ -5,23 +5,12 @@ import 'package:greetingcrew/dtschedule.dart';
 import 'package:greetingcrew/template.dart';
 import 'Data.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+    return  MyHomePage();
   }
 }
 
@@ -37,8 +26,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.black,
-        title: Text("                      GreetingCrew"),),
+        title: Text("GreetingCrew"),),
       body: Container(child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: GridView(children: [
