@@ -78,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
           InkWell(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>SendNOW()));
+              // send now
             },
             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black,),
               child: Column(
