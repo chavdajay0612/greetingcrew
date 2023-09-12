@@ -47,175 +47,165 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Profile Image and Edit Symbol
-          // Profile Image and Edit Symbol
-          GestureDetector(
-          onTap: _pickImage,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: 60.0,
-                backgroundImage: _image != null ? FileImage(File(_image!.path)) : null,
-                backgroundColor: Colors.black, // Background color for empty profile image
-                child: _image == null
-                    ? Icon(Icons.camera_alt, size: 40.0, color: Colors.white)
+            // Profile Image and Edit Symbol
+            GestureDetector(
+              onTap: _pickImage,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 60.0,
+                    backgroundImage: _image != null ? FileImage(File(_image!.path)) : null,
+                    backgroundColor: Colors.black, // Background color for empty profile image
+                    child: _image == null
+                        ? const Icon(Icons.camera_alt, size: 40.0, color: Colors.white)
                     // Camera icon for empty image
 
-        : Container(
+                        : Container(
                       width: 24,
                       height: 24,
-                      ),
                     ),
+                  ),
                 ],
               ),
             ),
 
             // Edit Profile Section
-            SizedBox(height: 24.0),
-            Center(
+            const SizedBox(height: 24.0),
+            const Center(
               child: Text(
                 'Edit Profile',
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             TextField(
               cursorColor: Colors.black,
               //controller: emailController,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(0.0),
+                contentPadding: const EdgeInsets.all(0.0),
                 labelText: 'First Name',
                 hintText: 'First Name',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,
                 ),
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.grey,
                   fontSize: 14.0,
                 ),
-                prefixIcon: Icon(Iconsax.user, color: Colors.black, size: 18, ),
+                prefixIcon: const Icon(Iconsax.user, color: Colors.black, size: 18, ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade200, width: 2),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                floatingLabelStyle: TextStyle(
+                floatingLabelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 18.0,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.5),
+                  borderSide: const BorderSide(color: Colors.black, width: 1.5),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
+
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             TextField(
               cursorColor: Colors.black,
               //controller: emailController,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(0.0),
+                contentPadding: const EdgeInsets.all(0.0),
                 labelText: 'Last Name',
                 hintText: 'Last Name',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,
                 ),
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.grey,
                   fontSize: 14.0,
                 ),
-                prefixIcon: Icon(Iconsax.user, color: Colors.black, size: 18, ),
+                prefixIcon: const Icon(Iconsax.user, color: Colors.black, size: 18, ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade200, width: 2),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                floatingLabelStyle: TextStyle(
+                floatingLabelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 18.0,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.5),
+                  borderSide: const BorderSide(color: Colors.black, width: 1.5),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+
+            const SizedBox(height: 15,),
             TextField(
               cursorColor: Colors.black,
               //controller: emailController,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(0.0),
-                labelText: 'Description',
-                hintText: 'Description',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w400,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14.0,
-                ),
-                prefixIcon: Icon(Iconsax.info_circle, color: Colors.black, size: 18, ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade200, width: 2),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                floatingLabelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18.0,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.5),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-            TextField(
-              cursorColor: Colors.black,
-              //controller: emailController,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(0.0),
+                contentPadding: const EdgeInsets.all(0.0),
                 labelText: 'Mobile Number',
                 hintText: 'Mobile Number',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,
                 ),
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.grey,
                   fontSize: 14.0,
                 ),
-                prefixIcon: Icon(Iconsax.call, color: Colors.black, size: 18, ),
+                prefixIcon: const Icon(Iconsax.call, color: Colors.black, size: 18, ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade200, width: 2),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                floatingLabelStyle: TextStyle(
+                floatingLabelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 18.0,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.5),
+                  borderSide: const BorderSide(color: Colors.black, width: 1.5),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
             ),
+            const SizedBox(height: 20,),
+            Align(
+              alignment: Alignment.topRight,
+              child: InkWell(
+                onTap:(){
+
+                  // Work For Saving
+
+                },
+                child:Container(
+                  width: 150,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(9)
+                  ),
+                  child: const Center(child: Text("SAVE",style: TextStyle(color: Colors.white),),),
+                ),),
+            ),
+            const SizedBox(height: 20,),
             SwitchListTile(
-              title: Text('Message Notifications'),
+              title: const Text('Message Notifications'),
               value: messageNotificationsEnabled,
               onChanged: (bool value) {
                 setState(() {
@@ -227,21 +217,21 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
             // App Settings Section
-            SizedBox(height: 24.0),
-            Text(
+            const SizedBox(height: 24.0),
+            const Text(
               'App Settings',
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             ListTile(
-              leading: Icon(Iconsax.support, color: Colors.black),
-              title: Text('Support'),
+              leading: const Icon(Iconsax.support, color: Colors.black),
+              title: const Text('Support'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SupportPage()));
               },
             ),
             ListTile(
-              leading: Icon(Iconsax.security, color: Colors.black),
-              title: Text('Terms of Service'),
+              leading: const Icon(Iconsax.security, color: Colors.black),
+              title: const Text('Terms of Service'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => TermsAndServicesPage()));
               },
@@ -251,6 +241,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 "Logout",
                 style: TextStyle(fontSize: 25,color: Colors.black),
               ),
+
               onPressed: ()  async{
                 var sharedpref=await SharedPreferences.getInstance();
                 sharedpref.setBool(WelcomePage.KEYLOGIN, false);

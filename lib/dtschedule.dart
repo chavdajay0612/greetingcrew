@@ -5,6 +5,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/src/material/date_picker_theme.dart';
 
 class dtschedule extends StatefulWidget {
+
+  String? PhoneNumber = "asdasdf";
+
+  dtschedule({required this.PhoneNumber});
+
+
   @override
   _dtschedule createState() => _dtschedule();
 }
@@ -35,6 +41,15 @@ class _dtschedule extends State<dtschedule> {
       currentTime: DateTime.now(),
       locale: LocaleType.en,
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.PhoneNumber != null ){
+      _phoneNumberController.text  = widget.PhoneNumber!;
+      setState(() {});
+    }
   }
   void _sendWhatsAppMessage() async {
     String phoneNumber = _phoneNumberController.text;
@@ -174,6 +189,6 @@ class _dtschedule extends State<dtschedule> {
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: dtschedule(),
+    home: dtschedule(PhoneNumber: "",),
   ));
 }
