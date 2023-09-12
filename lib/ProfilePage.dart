@@ -1,4 +1,6 @@
 import 'dart:io'; // Import the 'dart:io' library for File operations
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart'; // Import the image_picker package
 import 'package:iconsax/iconsax.dart';
@@ -25,6 +27,93 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+
+
+  String? _name;
+  String? _email;
+  String? _phoneNumber;
+  final DatabaseReference _userRef = FirebaseDatabase.instance.ref();
+
+  Future<void> _loadDataFromFirestore() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? userId = prefs.getString('userId');
+
+      if (userId != null) {
+
+
+
+
+        var snapshot = await _userRef.child("users").child(userId).get();
+
+        if (snapshot.value != null) {
+          // Map<dynamic, dynamic> userData = snapshot.v;
+
+
+
+          setState(() {
+            _name = '${snapshot.child("name").value}';
+            _email = '${snapshot.child("email").value}';
+            _phoneNumber = '${snapshot.child("Phone").value}';
+
+
+            nameController.text = _name!;
+            emailController.text = _email!;
+            mobileController.text = _phoneNumber!;
+
+          });
+        }
+      }
+    } catch (e) {
+      print('Error loading data from Firebase Realtime Database: $e');
+    }
+  }
+
+// Function to save data to Firebase Realtime Database
+  Future<void> _saveDataToFirestore() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? userId = prefs.getString('userId');
+
+      if (userId != null) {
+        Map<String, dynamic> userData = {
+          'name': _name,
+          'email': _email,
+          'Phone': _phoneNumber,
+        };
+
+        await _userRef.child("users").child(userId).update(userData);
+      }
+    } catch (e) {
+      print('Error saving data to Firebase Realtime Database: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDataFromFirestore();
+  }
+
+
+
+
+  bool _validateFields() {
+    if (_name == null || _name!.isEmpty) {
+      // Show a message or take any action you want for validation error
+      return false;
+    }
+
+    // Add similar checks for email and phone number
+
+    return true;
+  }
+
   // Define a variable to store the selected image
   XFile? _image;
   bool messageNotificationsEnabled = true;
@@ -89,11 +178,11 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 15,),
             TextField(
               cursorColor: Colors.black,
-              //controller: emailController,
+              controller: nameController,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(0.0),
-                labelText: 'First Name',
-                hintText: 'First Name',
+                labelText: 'Name',
+                hintText: 'Name',
                 labelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 14.0,
@@ -122,11 +211,11 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 15,),
             TextField(
               cursorColor: Colors.black,
-              //controller: emailController,
+              controller: emailController,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(0.0),
-                labelText: 'Last Name',
-                hintText: 'Last Name',
+                labelText: 'Email',
+                hintText: 'Email',
                 labelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 14.0,
@@ -155,7 +244,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 15,),
             TextField(
               cursorColor: Colors.black,
-              //controller: emailController,
+              controller: mobileController,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(0.0),
                 labelText: 'Mobile Number',
@@ -191,7 +280,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 onTap:(){
 
                   // Work For Saving
-
+                  if (_validateFields()) {
+                    _name = nameController.text;
+                    _email = emailController.text;
+                    _phoneNumber = mobileController.text;
+                    _saveDataToFirestore();
+                  }
                 },
                 child:Container(
                   width: 150,

@@ -44,8 +44,9 @@ class _LoginPageState extends State<LoginPage> {
 
       var sharedpref=await SharedPreferences.getInstance();
       sharedpref.setBool(WelcomePage.KEYLOGIN, true);
+      sharedpref.setString('userId', '${userCredential.user?.uid}');
 
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyApp()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyHomePage()));
       // Navigate to another page here
     } catch (e) {
       // Handle login error
