@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:greetingcrew/ContactUs.dart';
 import 'package:greetingcrew/ProfilePage.dart';
@@ -57,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> dtschedule(PhoneNumber: '',)));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> dtschedule(PhoneNumber: '',imagefile: File(''),)));
             },
             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black,),
               child: Column(

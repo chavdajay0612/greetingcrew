@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:iconsax/iconsax.dart';
@@ -8,7 +10,10 @@ class dtschedule extends StatefulWidget {
 
   String? PhoneNumber = "asdasdf";
 
-  dtschedule({required this.PhoneNumber});
+  File imagefile = File("");
+
+
+  dtschedule({required this.PhoneNumber,required this.imagefile});
 
 
   @override
@@ -184,11 +189,4 @@ class _dtschedule extends State<dtschedule> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: dtschedule(PhoneNumber: "",),
-  ));
 }

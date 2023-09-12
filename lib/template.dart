@@ -37,10 +37,11 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
     final storageRef = storage.ref();
     String? userId = FirebaseAuth.instance.currentUser?.uid;
     print("userid ==>>$userId");
-    final DatabaseReference userRef = FirebaseDatabase.instance.reference().child('files').child(userId!); // Replace 'user_id' with the actual user's UID
+    final DatabaseReference userRef = FirebaseDatabase.instance.reference().child('users').child(userId!); // Replace 'user_id' with the actual user's UID
 
+    var file;
     for (var i = 0; i < selectedFiles.length; i++) {
-      final file = selectedFiles[i];
+      file = selectedFiles[i];
       final fileName = 'file_${i}.${file.path.split('.').last}';
       print("fileName ==>>$fileName");
       final fileRef = storageRef.child(fileName);
@@ -59,7 +60,7 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
     );
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => dtschedule(PhoneNumber: '',)),
+      MaterialPageRoute(builder: (context) => dtschedule(PhoneNumber: '',imagefile: file,)),
     );
   }
 
