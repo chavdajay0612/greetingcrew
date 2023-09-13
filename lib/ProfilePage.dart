@@ -2,6 +2,7 @@ import 'dart:io'; // Import the 'dart:io' library for File operations
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart'; // Import the image_picker package
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,6 +29,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
+  bool isLoading = false;
+  bool isLoading2 = false;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -40,6 +43,10 @@ class _ProfilePageState extends State<ProfilePage> {
   final DatabaseReference _userRef = FirebaseDatabase.instance.ref();
 
   Future<void> _loadDataFromFirestore() async {
+    isLoading = true;
+    setState(() {
+
+    });
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? userId = prefs.getString('userId');
@@ -55,6 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
           // Map<dynamic, dynamic> userData = snapshot.v;
 
 
+          isLoading = false;
 
           setState(() {
             _name = '${snapshot.child("name").value}';
@@ -70,13 +78,22 @@ class _ProfilePageState extends State<ProfilePage> {
         }
       }
     } catch (e) {
+      isLoading = false;
+      setState(() {
+
+      });
       print('Error loading data from Firebase Realtime Database: $e');
     }
   }
 
 // Function to save data to Firebase Realtime Database
   Future<void> _saveDataToFirestore() async {
+    isLoading2 = true;
+    setState(() {
+
+    });
     try {
+      Fluttertoast.showToast(msg: 'Please wait....');
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? userId = prefs.getString('userId');
 
@@ -88,8 +105,17 @@ class _ProfilePageState extends State<ProfilePage> {
         };
 
         await _userRef.child("users").child(userId).update(userData);
+        Fluttertoast.showToast(msg: 'Updated');
+        isLoading2 = false;
+        setState(() {
+
+        });
       }
     } catch (e) {
+      isLoading2 = false;
+      setState(() {
+
+      });
       print('Error saving data to Firebase Realtime Database: $e');
     }
   }
@@ -133,7 +159,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return isLoading ? Scaffold(
+
+      body: Center(
+        child: Container(
+          width: 50,
+          height: 50,
+          child: CircularProgressIndicator(
+            color: Colors.black,
+          ),
+        ),
+      ),
+
+    ):Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text('Profile'),
@@ -274,9 +312,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             const SizedBox(height: 20,),
-            Align(
-              alignment: Alignment.topRight,
-              child: InkWell(
+             Align(
+              alignment:isLoading2 ? Alignment.center: Alignment.topRight,
+              child: isLoading2 ?  CircularProgressIndicator(color: Colors.black,) : InkWell(
                 onTap:(){
 
                   // Work For Saving

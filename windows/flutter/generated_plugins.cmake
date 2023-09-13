@@ -7,6 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   modal_progress_hud_nsn
   permission_handler_windows
+  share_plus
   url_launcher_windows
 )
 

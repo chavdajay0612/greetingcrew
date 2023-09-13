@@ -164,7 +164,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterWithPhoneNumber()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const RegisterWithPhoneNumber()));
 
                       },
                       color: Colors.black,

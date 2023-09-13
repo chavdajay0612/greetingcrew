@@ -1,14 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/src/material/date_picker_theme.dart';
+
+import 'Data.dart';
 
 class dtschedule extends StatefulWidget {
 
   String? PhoneNumber = "asdasdf";
 
-  dtschedule({required this.PhoneNumber});
+  File imagefile = File("");
+
+
+  dtschedule({required this.PhoneNumber,required this.imagefile});
 
 
   @override
@@ -52,10 +60,15 @@ class _dtschedule extends State<dtschedule> {
     }
   }
   void _sendWhatsAppMessage() async {
+    // final String phoneNumber = "<recipient_phone_number>";
+    // final String message = "Check out this image:";
+    final String imageUri = Uri.encodeFull('file:/${Uri.parse("${widget.imagefile.path}")}');
+
     String phoneNumber = _phoneNumberController.text;
     String message = _messageController.text;
-    var whatsappURl_android = "whatsapp://send?phone=$phoneNumber&text=${Uri.parse(message)}";
-    await launchUrl(Uri.parse(whatsappURl_android));
+    var whatsappURl_android = 'whatsapp://send?phone=$phoneNumber&text=$message$imageUri';
+    // Share.share();
+    // await launchUrl(Uri.parse(whatsappURl_android));
     String url = "https://wa.me/$phoneNumber?text=${Uri.parse(message)}";
   }
 
@@ -98,6 +111,15 @@ class _dtschedule extends State<dtschedule> {
                     borderSide: BorderSide(color: Colors.grey.shade200, width: 2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
+                  suffixIcon: GestureDetector(
+                    onTap: (){
+
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen() ));
+
+                    }, // Navigate to contacts page
+                    child: Icon(Icons.person, color: Colors.black, size: 26, ),
+                  ),
+
                   floatingLabelStyle: TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -184,11 +206,4 @@ class _dtschedule extends State<dtschedule> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: dtschedule(PhoneNumber: "",),
-  ));
 }

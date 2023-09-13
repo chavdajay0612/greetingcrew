@@ -4,6 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/src/material/date_picker_theme.dart';
 
+import 'Data.dart';
+
 class SendNOW extends StatefulWidget {
   @override
   _SendNOW createState() => _SendNOW();
@@ -59,6 +61,15 @@ class _SendNOW extends State<SendNOW> {
                     fontWeight: FontWeight.w400,
                   ),
                   prefixIcon: Icon(Iconsax.call, color: Colors.black, size: 18, ),
+                  suffixIcon: GestureDetector(
+                    onTap: (){
+
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen() ));
+
+                    }, // Navigate to contacts page
+                    child: Icon(Icons.person, color: Colors.black, size: 26, ),
+                  ),
+
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey.shade200, width: 2),
                     borderRadius: BorderRadius.circular(10.0),
