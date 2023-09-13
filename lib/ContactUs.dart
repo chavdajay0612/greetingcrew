@@ -33,7 +33,7 @@ class ContactUsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('Contact Us'),
+        title: const Text('Contact Us'),
       ),
       body: Center(
         child: Padding(
@@ -42,42 +42,42 @@ class ContactUsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center, // Center vertically
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [Padding(
-          padding: EdgeInsets.only(bottom: 80.0), // Add margin at the bottom
+          padding: const EdgeInsets.only(bottom: 80.0), // Add margin at the bottom
           child: Container(
           height: MediaQuery.of(context).size.height / 15,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/logo2.jpeg"),
             ),
             ),
           ),
         ),
-              Text(
+              const Text(
                 'Contact Information',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 16),
-              ListTile(
+              const SizedBox(height: 16),
+              const ListTile(
                 leading: Icon(Icons.email),
-                title: Text('Email: contact@example.com'),
+                title: Text('Email: contact@greetingcrew.com'),
               ),
-              ListTile(
+              const ListTile(
                 leading: Icon(Icons.phone),
-                title: Text('Phone: +91 123-456-7890'),
+                title: Text('Phone: +91 7575807929'),
               ),
               ListTile(  // Add this ListTile for the website link
-                leading: Icon(Icons.public),
-                title: Text('Website: www.example.com'),  // Replace with your website URL
+                leading: const Icon(Icons.public),
+                title: const Text('Website: www.example.com'),  // Replace with your website URL
                 onTap: () {
                   launch('https://www.example.com');  // Replace with your website URL
                 },
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'Connect with Us',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
