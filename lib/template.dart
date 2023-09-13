@@ -8,7 +8,6 @@ import 'package:greetingcrew/Home.dart';
 import 'package:greetingcrew/dtschedule.dart';
 
 
-
 // ignore: camel_case_types
 class template extends StatelessWidget {
   const template({super.key});
@@ -29,10 +28,18 @@ class FileUploadScreen extends StatefulWidget {
 class _FileUploadScreenState extends State<FileUploadScreen> {
   bool option1Selected = false;
   bool option2Selected = false;
+  bool _isloading = false;
   List<File> selectedFiles = [];
   List<String> fileNames = [];
 
   Future<void> uploadFilesToFirebase() async {
+    _isloading=true;
+    setState(() {
+
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Files uploading')),
+    );
     final storage = FirebaseStorage.instance;
     final storageRef = storage.ref();
     String? userId = FirebaseAuth.instance.currentUser?.uid;
@@ -55,6 +62,10 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
       });
     }
 
+    _isloading = false;
+    setState(() {
+
+    });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Files uploaded')),
     );
@@ -153,11 +164,13 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
                 primary: Colors.black, // Set the background color to black
               ),
             ),
-            ElevatedButton(
-              onPressed: uploadFilesToFirebase,
-              child: const Text('Send'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.black,// Set the background color to black
+            Container(
+              child: _isloading?CircularProgressIndicator(color: Colors.black,):ElevatedButton(
+                onPressed: uploadFilesToFirebase,
+                child: const Text('Send'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.black,// Set the background color to black
+                ),
               ),
             ),
           ],
