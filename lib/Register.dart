@@ -91,12 +91,7 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.network(
-                  'https://ouch-cdn2.icons8.com/n9XQxiCMz0_zpnfg9oldMbtSsG7X6NwZi_kLccbLOKw/rs:fit:392:392/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDMv/MGE2N2YwYzMtMjQw/NC00MTFjLWE2MTct/ZDk5MTNiY2IzNGY0/LnN2Zw.png',
-                  fit: BoxFit.cover,
-                  width: 220,
-                ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 150),
                 FadeInDown(
                   child: Text(
                     'REGISTER',
@@ -114,7 +109,7 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 15,),
+                const SizedBox(height: 30,),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -196,7 +191,6 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                       ),
                       const SizedBox(height: 20,),
                       TextFormField(
-                        maxLength: 6,
                         cursorColor: Colors.black,
                         controller: passwordController,
                         obscureText: _isSecurePassword,
@@ -238,7 +232,6 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                       ),
                       const SizedBox(height: 15,),
                       TextFormField(
-                        maxLength: 6,
                         cursorColor: Colors.black,
                         controller: confirmPasswordController,
                         obscureText: _isSecurePassword1,
@@ -282,7 +275,6 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                       TextFormField(
                         cursorColor: Colors.black,
                         controller: phoneController,
-                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(0.0),
                           labelText: 'Phone Number',
@@ -291,7 +283,6 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                             color: Colors.grey,
                             fontSize: 14.0,
                           ),
-
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -314,13 +305,13 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                           if (value == null || value.isEmpty) {
                             return 'Phone number is required';
                           }
-                          if (value.length != 10){
+                          if (value != 10){
                             return 'Enter Valid mobile number';
                           }
                           return null;
                         },
                       ),
-                      const SizedBox(height: 25,),
+                      const SizedBox(height: 30,),
                       MaterialButton(
                         onPressed: () {
                           if (_formKey.currentState != null && _formKey.currentState!.validate()) {
@@ -335,16 +326,16 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 25),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Don\'t have an account?', style: TextStyle(color: Colors.grey.shade600, fontSize: 14.0, fontWeight: FontWeight.w400)),
+                          Text('Already have an account?', style: TextStyle(color: Colors.grey.shade600, fontSize: 14.0, fontWeight: FontWeight.w400)),
                           TextButton(
                             onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                             },
-                            child: const Text('Login', style: TextStyle(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.w400)),
+                            child: const Text('Login', style: TextStyle(color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.w400)),
                           )
                         ],
                       ),
