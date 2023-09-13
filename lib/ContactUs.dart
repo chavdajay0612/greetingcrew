@@ -37,21 +37,11 @@ class ContactUsPage extends StatelessWidget {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center, // Center vertically
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [Padding(
-          padding: const EdgeInsets.only(bottom: 80.0), // Add margin at the bottom
-          child: Container(
-          height: MediaQuery.of(context).size.height / 15,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/logo2.jpeg"),
-            ),
-            ),
-          ),
-        ),
+            children: [
               const Text(
                 'Contact Information',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -73,57 +63,6 @@ class ContactUsPage extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Connect with Us',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 80,
-                    height: 80,
-                    child: IconButton(
-                      icon: Container(
-                        child: Image.asset('assets/Face.jpg'), // Replace with your Facebook logo image asset
-                      ),
-                      onPressed: () {
-                        launchUrl2();
-                        launch('https://www.facebook.com/your_facebook_page');// Add your Facebook link here
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    width: 65,
-                    height: 65,
-                  child: IconButton(
-                    icon: Container(
-                      child: Image.asset('assets/Lin.jpg'), // Replace with your Google logo image asset
-                    ),
-                    onPressed: () {
-                      launch('https://www.linkedin.com');
-                      //Navigator.push(context,MaterialPageRoute(builder: (context)=>HomePage()));
-
-                    },
-                  ),
-                  ),
-                  SizedBox(
-                    width: 80,
-                    height: 80,
-                    child: IconButton(
-                      icon: Container(
-                        child: Image.asset('assets/X.jpg'), // Replace with your Google logo image asset
-                      ),
-                      onPressed: () {
-                        launch('https://twitter.com');
-                        //Navigator.push(context,MaterialPageRoute(builder: (context)=>HomePage()));
-
-                      },
-                    ),
-                  )
-                ],
-              ),
             ],
           ),
         ),

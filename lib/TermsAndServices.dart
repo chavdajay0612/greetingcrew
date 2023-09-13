@@ -20,7 +20,7 @@ class TermsAndServicesPage extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               Text(
-                'Welcome to our app. By using our services, you are agreeing to the following terms and conditions:',
+                'Welcome to GreetingCrew, the WhatsApp messaging app that facilitates personalized and heartfelt communications. By using our services, you agree to adhere to the following terms and conditions:',
                 style: TextStyle(fontSize: 16.0),
               ),
               SizedBox(height: 16.0),
