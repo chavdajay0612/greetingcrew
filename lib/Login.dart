@@ -61,9 +61,11 @@ class _LoginPageState extends State<LoginPage> {
       // Navigate to another page here
     } catch (e) {
       _isloading=false;
-      setState(() {
+      if(mounted) {
+        setState(() {
 
-      });
+        });
+      }
       // Handle login error
       Fluttertoast.showToast(
           msg: "Login Failed",

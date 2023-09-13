@@ -63,10 +63,16 @@ class _RegisterWithPhoneNumberState extends State<RegisterWithPhoneNumber> {
       print("Error: $e");
     }
 
-    setState(() {
+
       _isLoading = false;
-    });
+
+    if(mounted) {
+      setState(() {
+
+      });
+    }
   }
+
 
   bool isValidEmail(String input) {
     final RegExp regex = RegExp(r'^[\w-]+@([\w-]+\.)+\w{2,4}$');
