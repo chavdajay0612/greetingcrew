@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/src/material/date_picker_theme.dart';
 
 import 'Data.dart';
 
 class SendNOW extends StatefulWidget {
   @override
-  _SendNOW createState() => _SendNOW();
+  _SendNOWState createState() => _SendNOWState();
 }
 
-class _SendNOW extends State<SendNOW> {
+class _SendNOWState extends State<SendNOW> {
   TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController _messageController = TextEditingController();
-  String _selectedDateTime = '';
-
-
 
   void _sendWhatsAppMessage() async {
     String phoneNumber = _phoneNumberController.text;
@@ -25,8 +20,6 @@ class _SendNOW extends State<SendNOW> {
     await launchUrl(Uri.parse(whatsappURl_android));
     String url = "https://wa.me/$phoneNumber?text=${Uri.parse(message)}";
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +41,8 @@ class _SendNOW extends State<SendNOW> {
               TextField(
                 controller: _phoneNumberController,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(contentPadding: EdgeInsets.all(0.0),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(0.0),
                   labelText: 'Phone Number',
                   hintText: 'Phone number',
                   hintStyle: TextStyle(
@@ -87,7 +81,8 @@ class _SendNOW extends State<SendNOW> {
               SizedBox(height: 30),
               TextField(
                 controller: _messageController,
-                decoration: InputDecoration(contentPadding: EdgeInsets.all(0.0),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(0.0),
                   labelText: 'Message',
                   hintText: 'Message',
                   hintStyle: TextStyle(
@@ -114,7 +109,6 @@ class _SendNOW extends State<SendNOW> {
                   ),
                 ),
               ),
-
               SizedBox(height: 20),
               MaterialButton(
                 minWidth: double.infinity,

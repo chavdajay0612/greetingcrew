@@ -30,18 +30,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> getContactPermission() async {
     if (await Permission.contacts.isGranted) {
       fetchContacts();
-      // Fluttertoast.showToast(msg: 'test1');
+      Fluttertoast.showToast(msg: 'test1');
     } else {
       await Permission.contacts.request();
     }
   }
 
   Future<void> fetchContacts() async {
-    // Fluttertoast.showToast(msg: 'test2');
+    Fluttertoast.showToast(msg: 'test2');
     contacts = await ContactsService.getContacts();
 
 
-    // Fluttertoast.showToast(msg: 'test3');
+    Fluttertoast.showToast(msg: 'test3');
 
     if (mounted) {
       setState(() {
@@ -60,9 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: isLoading
           ? Center(
-        child: CircularProgressIndicator(
-          color: Colors.black,
-        ),
+        child: CircularProgressIndicator(),
       )
           : ListView.builder(
         itemCount: contacts.length,
@@ -71,9 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (){
 
 
-                contacts[index].phones!.length > 0 ?
-                Navigator.push(context, MaterialPageRoute(builder: (context) => dtschedule(PhoneNumber: "${contacts[index].phones![0].value!}",
-                  imagefile: File(''),))):Fluttertoast.showToast(msg: "No Contact For This Person");
+                contacts[index].phones!.length > 0 ? Navigator.push(context, MaterialPageRoute(builder: (context) => dtschedule(PhoneNumber: "${contacts[index].phones![0].value!}",imagefile: File(''),))):Fluttertoast.showToast(msg: "No Contact For This Person");
+
 
               },
               child:ListTile(
@@ -96,16 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(6),
                     color: Color(0xff262626),
                   ),
-                  child: contacts[index].givenName != null ? Text(
+                  child: Text(
                     contacts[index].givenName![0],
-                    style: TextStyle(
-                      color: Colors.primaries[
-                      Random().nextInt(Colors.primaries.length)],
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ): Text(
-                    "*",
                     style: TextStyle(
                       color: Colors.primaries[
                       Random().nextInt(Colors.primaries.length)],
@@ -114,21 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                title: contacts[index].givenName != null ? Text(
+                title: Text(
                   contacts[index].givenName!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w500,
-                  ),
-                ): Text(
-                  "No Name",
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.cyanAccent,
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w500,
                   ),
