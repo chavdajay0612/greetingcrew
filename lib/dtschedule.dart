@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/src/material/date_picker_theme.dart';
+import 'package:http/http.dart' as http;
 
 import 'Data.dart';
 
@@ -60,16 +62,57 @@ class _dtschedule extends State<dtschedule> {
     }
   }
   void _sendWhatsAppMessage() async {
-    // final String phoneNumber = "<recipient_phone_number>";
-    // final String message = "Check out this image:";
-    final String imageUri = Uri.encodeFull('file:/${Uri.parse("${widget.imagefile.path}")}');
-
-    String phoneNumber = _phoneNumberController.text;
+    String phoneNumber = _phoneNumberController.text.replaceAll(" ", "");
     String message = _messageController.text;
-    var whatsappURl_android = 'whatsapp://send?phone=$phoneNumber&text=$message$imageUri';
-    // Share.share();
-    // await launchUrl(Uri.parse(whatsappURl_android));
-    String url = "https://wa.me/$phoneNumber?text=${Uri.parse(message)}";
+
+    // Check if the phone number contains "+91" and modify it if necessary
+    if (phoneNumber.startsWith("+91")) {
+      // Remove "+91 " and replace it with "91"
+      var newPhone =  phoneNumber.substring(3);
+
+      phoneNumber = "91" + newPhone;
+
+      Fluttertoast.showToast(msg: '$phoneNumber');
+
+    } else if (!phoneNumber.startsWith("91")) {
+      // If it doesn't start with "91", prepend "91"
+      phoneNumber = "91" + phoneNumber;
+      Fluttertoast.showToast(msg: '$phoneNumber');
+    }
+
+    if (widget.imagefile.path.isNotEmpty) {
+      final String imageUri = Uri.encodeFull(
+          'file:/${Uri.parse("${widget.imagefile.path}")}');
+
+      var whatsappURl_android = 'whatsapp://send?phone=$phoneNumber&text=$message$imageUri';
+
+
+
+      var uri = Uri.parse('https://aksender.in/api/send?number=$phoneNumber&type=media&message=$message&media_url=https://sprsoftware.com/images/logo.png&filename=file_test.jpg&instance_id=6501A9176BD17&access_token=6501a4c169547');
+      var res = await http.get(uri);
+      //  loading
+      if (res.statusCode == 200) {
+        // main
+        Fluttertoast.showToast(msg: 'Success');
+      } else {
+        // error
+        Fluttertoast.showToast(msg: 'Error with ${res.statusCode} and ${res.body}');
+      }
+
+      // https://aksender.in/api/send?number=916358145566&type=media&message=hello&media_url=https://sprsoftware.com/images/logo.png&filename=file_test.jpg&instance_id=6501A9176BD17&access_token=6501a4c169547
+      // await launchUrl(Uri.parse(whatsappURl_android));
+    } else {
+      var uri = Uri.parse('https://aksender.in/api/send?number=$phoneNumber&type=text&message=$message&instance_id=6501A9176BD17&access_token=6501a4c169547');
+      var res = await http.get(uri);
+      //  loading
+      if (res.statusCode == 200) {
+        // main
+        Fluttertoast.showToast(msg: 'Success');
+      } else {
+        // error
+        Fluttertoast.showToast(msg: 'Error with ${res.statusCode} and ${res.body}');
+      }
+    }
   }
 
 
